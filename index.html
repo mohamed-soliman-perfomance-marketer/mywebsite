@@ -1,0 +1,537 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Soliman | Senior Media Buyer & Performance Marketer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 30s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Chart.js for Data Visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+
+        /* Custom Brand Text Styles & Animations */
+        .brand-text {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: float-glow 3s ease-in-out infinite alternate;
+        }
+        .brand-text:nth-child(even) {
+            animation-delay: 1.5s;
+        }
+        .brand-text:hover {
+            color: #34d399; /* emerald-400 */
+            transform: scale(1.15) translateY(-5px);
+            text-shadow: 0 0 25px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.4);
+            z-index: 20;
+        }
+        @keyframes float-glow {
+            0% { 
+                text-shadow: 0 0 10px rgba(255,255,255,0.05); 
+                transform: translateY(0px); 
+            }
+            100% { 
+                text-shadow: 0 0 20px rgba(255,255,255,0.2); 
+                transform: translateY(-6px); 
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-50 min-h-screen selection:bg-emerald-500/30 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-xl font-bold tracking-tighter text-white">
+                MOHAMED <span class="text-emerald-400">SOLIMAN</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+                <a href="#dashboard" class="hover:text-emerald-400 transition-colors">Performance</a>
+                <a href="#brands" class="hover:text-emerald-400 transition-colors">Brands</a>
+                <a href="#experience" class="hover:text-emerald-400 transition-colors">Resume</a>
+                <a href="#cases" class="hover:text-emerald-400 transition-colors">Projects</a>
+            </div>
+            <a href="#contact" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 py-2.5 rounded-full font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] hidden md:block">
+                Let's Work Together
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-900/20 via-slate-950 to-slate-950 -z-10"></div>
+
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="hero-content opacity-0 translate-y-8">
+                <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase">Egypt / Remote Media Buyer</span>
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
+                    Scaling Brands, <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+                        Driving Revenue.
+                    </span>
+                </h1>
+                <p class="text-lg text-slate-400 mb-8 max-w-xl leading-relaxed">
+                    I am a data-driven Media Buyer specializing in high-converting acquisition engines. 
+                    From Meta and TikTok Ads to full-funnel marketing strategies, I turn ad spend into measurable, profitable growth.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#cases" class="flex items-center justify-center space-x-2 bg-white text-slate-950 px-8 py-4 rounded-lg font-bold hover:bg-slate-200 transition-colors">
+                        <span>View Projects</span>
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#contact" class="flex items-center justify-center space-x-2 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition-colors">
+                        <span>Hire Me</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Stats Glass Card -->
+            <div class="hero-card relative opacity-0 translate-x-8">
+                <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-cyan-500/10 blur-3xl -z-10 rounded-full"></div>
+                <div class="glass-panel rounded-2xl p-8 shadow-2xl">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-white font-semibold flex items-center gap-2">
+                            <i data-lucide="trending-up" class="text-emerald-400 w-5 h-5"></i>
+                            Recent Performance (Ecom)
+                        </h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <p class="text-sm text-slate-400 mb-1">Total Sales Generated</p>
+                            <p class="text-4xl font-bold text-white" id="stat-spend">$82.4K+</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-400 mb-1">Store Conversion Rate</p>
+                            <p class="text-4xl font-bold text-emerald-400" id="stat-roas">3.84%</p>
+                        </div>
+                    </div>
+                    <!-- Chart.js Canvas -->
+                    <div class="h-48 w-full relative">
+                        <canvas id="roasChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof Dashboard / Platform Mastery -->
+    <section id="dashboard" class="py-16 px-6 bg-slate-950 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-6">
+                <!-- Stat 1 -->
+                <div class="stat-card opacity-0 translate-y-4 bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors">
+                    <i data-lucide="bar-chart-2" class="text-cyan-400 w-7 h-7 mb-4"></i>
+                    <h4 class="text-3xl font-bold text-white mb-1">7+</h4>
+                    <p class="text-sm text-slate-400">Ad Platforms (Meta, Google, Snap, TikTok...)</p>
+                </div>
+                <!-- Stat 2 -->
+                <div class="stat-card opacity-0 translate-y-4 bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors">
+                    <i data-lucide="pen-tool" class="text-emerald-400 w-7 h-7 mb-4"></i>
+                    <h4 class="text-3xl font-bold text-white mb-1">35+</h4>
+                    <p class="text-sm text-slate-400">Brands Scaled</p>
+                </div>
+                <!-- Stat 3 -->
+                <div class="stat-card opacity-0 translate-y-4 bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors">
+                    <i data-lucide="layers" class="text-cyan-400 w-7 h-7 mb-4"></i>
+                    <h4 class="text-3xl font-bold text-white mb-1">3+ Yrs</h4>
+                    <p class="text-sm text-slate-400">Media Buying Experience</p>
+                </div>
+                <!-- Stat 4 -->
+                <div class="stat-card opacity-0 translate-y-4 bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors">
+                    <i data-lucide="crosshair" class="text-cyan-400 w-7 h-7 mb-4"></i>
+                    <h4 class="text-xl font-bold text-white mb-1">Full-Funnel</h4>
+                    <p class="text-sm text-slate-400">From Planning to Conversions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Brands Showcase -->
+    <section id="brands" class="py-24 bg-slate-900/50 border-t border-white/5 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 mb-16 text-center">
+            <h2 class="text-2xl font-bold text-white fade-up opacity-0">Trusted by <span class="text-emerald-400">35+</span> Growing Brands</h2>
+            <p class="text-slate-400 mt-2 text-sm fade-up opacity-0">Managing budgets and scaling revenue across diverse industries.</p>
+        </div>
+
+        <!-- Marquee Container -->
+        <div class="relative w-full flex overflow-x-hidden">
+            <!-- Left fade gradient -->
+            <div class="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-slate-900/50 to-transparent z-10 pointer-events-none"></div>
+            <!-- Right fade gradient -->
+            <div class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-slate-900/50 to-transparent z-10 pointer-events-none"></div>
+
+            <div class="flex min-w-full shrink-0 animate-marquee space-x-12 px-6 items-center">
+                <!-- Typography-Based Brand Showcase -->
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Gardenia</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Etlala</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Al Rowad</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">El Mazen</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Jolie</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Technomasr</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Kun Agency</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Nine Clic</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">IMFND</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Cuddles</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Digital Hub</div>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="flex min-w-full shrink-0 animate-marquee space-x-12 px-6 items-center" aria-hidden="true">
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Gardenia</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Etlala</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Al Rowad</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">El Mazen</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Jolie</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Technomasr</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Kun Agency</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Nine Clic</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">IMFND</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Cuddles</div>
+                <div class="brand-text text-3xl md:text-5xl font-black uppercase tracking-widest text-slate-200 cursor-default">Digital Hub</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Resume / Experience -->
+    <section id="experience" class="py-24 px-6 relative bg-slate-900/50 border-t border-white/5">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-16 fade-up opacity-0">Digital Resume</h2>
+
+            <div class="relative border-l border-emerald-500/30 ml-4 md:ml-0 space-y-12">
+                <!-- Role 1 -->
+                <div class="process-card relative pl-8 opacity-0 translate-y-4">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
+                    <div class="text-emerald-400 text-sm font-bold mb-1">Feb 2025 - Present (Freelance)</div>
+                    <h3 class="text-2xl font-bold text-white">Media Buyer</h3>
+                    <div class="text-slate-400 text-sm font-medium mb-3">Etlala & Jolie, Gardenia, Al Rowad Clinic, El Mazen, Technomasr, Kun Agency</div>
+                    <p class="text-slate-400">Crafting high-ROAS advertising campaigns across Facebook, Instagram, Snapchat, TikTok, Twitter, LinkedIn, and Google.</p>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="process-card relative pl-8 opacity-0 translate-y-4">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 bg-slate-700 border-2 border-slate-900 rounded-full"></div>
+                    <div class="text-slate-500 text-sm font-bold mb-1">Aug 2024 - Feb 2025 (Full-time)</div>
+                    <h3 class="text-2xl font-bold text-white">Media Buyer</h3>
+                    <div class="text-slate-400 text-sm font-medium mb-3">Technomasr Inc.</div>
+                    <p class="text-slate-400">Executed comprehensive media plans, identified target audiences, selected media channels, set budgets, and analyzed data to optimize consumer insights and performance metrics.</p>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="process-card relative pl-8 opacity-0 translate-y-4">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 bg-slate-700 border-2 border-slate-900 rounded-full"></div>
+                    <div class="text-slate-500 text-sm font-bold mb-1">Jun 2024 (Internship)</div>
+                    <h3 class="text-2xl font-bold text-white">Media Buyer</h3>
+                    <div class="text-slate-400 text-sm font-medium mb-3">Click Your Future Inc.</div>
+                    <p class="text-slate-400">Wrote SEO-optimized articles to attract visitors and drove the creation of optimized freelancing website profiles.</p>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="process-card relative pl-8 opacity-0 translate-y-4">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 bg-slate-700 border-2 border-slate-900 rounded-full"></div>
+                    <div class="text-slate-500 text-sm font-bold mb-1">Mar 2024 - Jun 2024 (Internship)</div>
+                    <h3 class="text-2xl font-bold text-white">Media Buyer</h3>
+                    <div class="text-slate-400 text-sm font-medium mb-3">IMFND Inc.</div>
+                    <p class="text-slate-400">Created 2 deep media plans outlining channels, frequency, and timing. Planned and launched 7 campaigns across Google, Facebook, Instagram, Snapchat, Twitter, LinkedIn, and TikTok.</p>
+                </div>
+
+                <!-- Role 5 -->
+                <div class="process-card relative pl-8 opacity-0 translate-y-4">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 bg-slate-700 border-2 border-slate-900 rounded-full"></div>
+                    <div class="text-slate-500 text-sm font-bold mb-1">Oct 2023 - Jan 2024 (Internship)</div>
+                    <h3 class="text-2xl font-bold text-white">Social Media Specialist</h3>
+                    <div class="text-slate-400 text-sm font-medium mb-3">Digital Hub Egypt Inc.</div>
+                    <p class="text-slate-400">Created marketing, content, and media plans. Managed Facebook/Instagram pages and launched ads that increased reach and engagement by 25-30%.</p>
+                </div>
+
+                <!-- Education -->
+                <div class="process-card relative pl-8 opacity-0 translate-y-4 mt-8 pt-8 border-t border-white/10">
+                    <div class="absolute -left-[9px] top-9 w-4 h-4 bg-slate-700 border-2 border-slate-900 rounded-full"></div>
+                    <div class="text-slate-500 text-sm font-bold mb-1">2016 - 2020</div>
+                    <h3 class="text-xl font-bold text-white">Bachelor of Accounting</h3>
+                    <div class="text-slate-400 text-sm font-medium mb-3">Tanta University</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="cases" class="py-24 px-6 relative border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-16 fade-up opacity-0">Project Highlights</h2>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Case Study 1 -->
+                <div class="case-card opacity-0 scale-95 group relative bg-slate-900 border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300">
+                    <div class="p-8 relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="bg-emerald-500/10 text-emerald-400 text-sm font-semibold px-3 py-1 rounded-full">
+                                Fashion E-commerce
+                            </span>
+                            <i data-lucide="arrow-up-right" class="text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Cuddles Store</h3>
+                        <div class="mb-6">
+                            <h4 class="text-sm text-slate-400 mb-1">Role</h4>
+                            <p class="text-white font-medium">Creation of Marketing Plan, Content Plan, and Media Plan + Copywriting.</p>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-sm text-slate-400 mb-1">The Strategy</h4>
+                            <p class="text-slate-300">End-to-end Facebook & Instagram ad execution designed to build awareness and scale direct customer purchases rapidly.</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
+                            <div>
+                                <p class="text-sm text-slate-400 mb-1">Key Deliverables</p>
+                                <p class="text-lg font-bold text-emerald-400">Full Media Plan</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-400 mb-1">Platforms</p>
+                                <p class="text-lg font-bold text-white">FB & IG</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="case-card opacity-0 scale-95 group relative bg-slate-900 border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300">
+                    <div class="p-8 relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="bg-emerald-500/10 text-emerald-400 text-sm font-semibold px-3 py-1 rounded-full">
+                                Perfumes & Aesthetics
+                            </span>
+                            <i data-lucide="arrow-up-right" class="text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Gardenia Flora / Al Rowad Clinic</h3>
+                        <div class="mb-6">
+                            <h4 class="text-sm text-slate-400 mb-1">Objective</h4>
+                            <p class="text-white font-medium">Drive omni-channel acquisition and maximize local reach and clinic/store footfall.</p>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-sm text-slate-400 mb-1">The Execution</h4>
+                            <p class="text-slate-300">Crafting robust advertising campaigns leveraging Meta, Snapchat, TikTok, Twitter, LinkedIn, and Google to capture intent across the entire buyer journey.</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
+                            <div>
+                                <p class="text-sm text-slate-400 mb-1">Channels</p>
+                                <p class="text-lg font-bold text-emerald-400">Omnichannel</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-400 mb-1">Focus</p>
+                                <p class="text-lg font-bold text-white">Growth & ROI</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Tools Stack -->
+    <section id="skills" class="py-24 px-6 bg-slate-900/50 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-16 text-center fade-up opacity-0">The Arsenal</h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Marketing Skills -->
+                <div class="fade-up opacity-0">
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4">Hard & Soft Skills</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-white/10 px-4 py-2 rounded-full text-sm text-slate-300 border border-white/5">Media Planning & Buying</span>
+                        <span class="bg-white/10 px-4 py-2 rounded-full text-sm text-slate-300 border border-white/5">Data Analysis</span>
+                        <span class="bg-white/10 px-4 py-2 rounded-full text-sm text-slate-300 border border-white/5">Budget Setting</span>
+                        <span class="bg-white/10 px-4 py-2 rounded-full text-sm text-slate-300 border border-white/5">Audience Identification</span>
+                        <span class="bg-white/10 px-4 py-2 rounded-full text-sm text-slate-300 border border-white/5">Consumer Insights</span>
+                        <span class="bg-emerald-900/30 text-emerald-300 px-4 py-2 rounded-full text-sm border border-emerald-500/20">Decision Making</span>
+                        <span class="bg-emerald-900/30 text-emerald-300 px-4 py-2 rounded-full text-sm border border-emerald-500/20">Collaboration</span>
+                        <span class="bg-emerald-900/30 text-emerald-300 px-4 py-2 rounded-full text-sm border border-emerald-500/20">Teamwork</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="fade-up opacity-0">
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4">Platforms</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-semibold">Meta Ads</span>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-semibold">Google Ads</span>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-semibold">TikTok Ads</span>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-semibold">Snapchat Ads</span>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-semibold">LinkedIn Ads</span>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-semibold">Twitter Ads</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-32 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-emerald-900/20 blur-[100px] -z-10 rounded-full w-[800px] h-[800px] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"></div>
+
+        <div class="max-w-4xl mx-auto text-center fade-up opacity-0">
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                Let's Work Together
+            </h2>
+            <p class="text-xl text-slate-400 mb-10">
+                Ready to scale your business with data-backed media buying strategies? Let's connect and build a profitable acquisition system.
+            </p>
+
+            <div class="max-w-md mx-auto flex flex-col gap-4">
+                <a href="mailto:mohamedsoliman9902@gmail.com" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-lg rounded-lg px-6 py-4 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] text-center flex items-center justify-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i> mohamedsoliman9902@gmail.com
+                </a>
+                <div class="flex gap-4 mt-4 justify-center text-slate-400">
+                    <a href="https://www.linkedin.com/in/mohamed-soliman-media-buyer/" target="_blank" class="hover:text-emerald-400 flex items-center gap-2 transition-colors">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-8 text-center text-slate-500 text-sm">
+        <p>&copy; 2024 Mohamed Soliman. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Register ScrollTrigger for GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Chart.js Setup (Visual Representation based on portfolio data)
+        const ctx = document.getElementById('roasChart').getContext('2d');
+
+        // Create gradient for the chart
+        const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+        gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+        gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                datasets: [{
+                    label: 'Store Sales',
+                    data: [15000, 24000, 36000, 52000, 68000, 82400], // Updated to reflect the new 82.4K goal
+                    borderColor: '#10b981',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 6,
+                    pointHoverBackgroundColor: '#10b981'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#0f172a',
+                        titleColor: '#94a3b8',
+                        bodyColor: '#34d399',
+                        borderColor: '#1e293b',
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return '$' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { display: false },
+                    y: { display: false, min: 10000 }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+            }
+        });
+
+        // GSAP Animations
+        gsap.to(".hero-content", { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
+        gsap.to(".hero-card", { opacity: 1, x: 0, duration: 1, delay: 0.2, ease: "power3.out" });
+
+        gsap.utils.toArray(".fade-up").forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
+            });
+        });
+
+        gsap.to(".stat-card", {
+            scrollTrigger: { trigger: "#dashboard", start: "top 80%" },
+            opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out"
+        });
+
+        gsap.to(".case-card", {
+            scrollTrigger: { trigger: "#cases", start: "top 75%" },
+            opacity: 1, scale: 1, duration: 0.6, stagger: 0.15, ease: "back.out(1.2)"
+        });
+
+        gsap.to(".process-card", {
+            scrollTrigger: { trigger: "#experience", start: "top 80%" },
+            opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power2.out"
+        });
+    </script>
+</body>
+</html>
+```
